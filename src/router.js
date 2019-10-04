@@ -29,7 +29,25 @@ export default new Router({
       path: "/home",
       name: "home",
       component: () =>
-        import(/* webpackChunkName: "Home" */ "./layouts/BasicLayout.vue")
+        import(/* webpackChunkName: "Home" */ "./layouts/BasicLayout.vue"),
+      children: [
+        {
+          path: "/",
+          redirect: "/dashboard"
+        },
+        {
+          path: "/dashboard",
+          namne: "dashboard",
+          component: () =>
+            import(/* webpackChunkName: "User" */ "./views/Dashboard/dashboard.vue")
+        },
+        {
+          path: "/user/register",
+          namne: "register",
+          component: () =>
+            import(/* webpackChunkName: "User" */ "./views/User/Register.vue")
+        }
+      ]
     },
     {
       path: "/about",
